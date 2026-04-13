@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Digital — Bastian Fitness & Coaching | Unicorn Agency</title>
+
+  <!-- Reveal.js CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── CSS Variables ─────────────────────────────────────── */
+    :root {
+      --bg-dark:    #0c0e12;
+      --bg-card:    #141820;
+      --bg-card2:   #1a1f2c;
+      --border:     rgba(255,255,255,0.07);
+      --amber:      #e8a823;
+      --amber-dim:  #c48c1a;
+      --amber-glow: rgba(232,168,35,0.15);
+      --red:        #e85555;
+      --red-dim:    rgba(232,85,85,0.15);
+      --orange:     #e87a35;
+      --orange-dim: rgba(232,122,53,0.15);
+      --green:      #4ecb74;
+      --green-dim:  rgba(78,203,116,0.15);
+      --text:       #f0f2f5;
+      --text-muted: #8892a0;
+      --text-dim:   #545d6b;
+      --unicorn:    #a855f7;
+    }
+
+    /* ─── Base Overrides ──────────────────────────────────────── */
+    .reveal-viewport { background: var(--bg-dark); }
+    .reveal .slides   { font-family: 'DM Sans', sans-serif; }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: -0.02em;
+      text-transform: none;
+      line-height: 1.15;
+    }
+
+    .reveal section {
+      text-align: left;
+      color: var(--text);
+    }
+
+    /* ─── Slide global layout ──────────────────────────────────── */
+    .slide-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ─── Grain overlay ──────────────────────────────────────── */
+    .reveal-viewport::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── SLIDE 1 — Titre ─────────────────────────────────────── */
+    .slide-cover {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      padding: 60px 80px;
+      overflow: hidden;
+    }
+
+    .slide-cover::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(232,168,35,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .slide-cover::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cover-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+      opacity: 0.9;
+    }
+
+    .cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2em;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--text);
+      margin: 0 0 10px;
+    }
+
+    .cover-title em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .cover-subtitle {
+      font-size: 0.85em;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-top: 12px;
+    }
+
+    .cover-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--amber);
+      margin: 28px 0;
+    }
+
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+      font-size: 0.65em;
+      color: var(--text-dim);
+    }
+
+    .cover-meta span strong {
+      display: block;
+      color: var(--text-muted);
+      font-size: 1.1em;
+      margin-bottom: 2px;
+    }
+
+    .cover-agency {
+      position: absolute;
+      bottom: 30px; right: 50px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58em;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+    }
+
+    .cover-agency::before {
+      content: '◆';
+      color: var(--unicorn);
+      font-size: 1.2em;
+    }
+
+    .audit-pills {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .audit-pill {
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.62em;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── Section Divider slides ─────────────────────────────── */
+    .slide-section-divider {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 8em;
+      font-weight: 900;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      position: absolute;
+      right: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .section-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-tag.seo   { color: var(--amber); }
+    .section-tag.ux    { color: #60a5fa; }
+    .section-tag.tech  { color: var(--green); }
+
+    .section-divider-title {
+      font-size: 2.8em;
+      font-weight: 700;
+      line-height: 1.1;
+      max-width: 600px;
+    }
+
+    .section-divider-desc {
+      font-size: 0.75em;
+      color: var(--text-muted);
+      margin-top: 20px;
+      max-width: 500px;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .section-accent-line {
+      width: 50px;
+      height: 3px;
+      margin-bottom: 24px;
+      border-radius: 2px;
+    }
+    .seo-accent  { background: var(--amber); }
+    .ux-accent   { background: #60a5fa; }
+    .tech-accent { background: var(--green); }
+
+    /* ─── Standard content layout ─────────────────────────────── */
+    .slide-content {
+      padding: 40px 70px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .slide-header {
+      margin-bottom: 28px;
+      flex-shrink: 0;
+    }
+
+    .slide-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      opacity: 0.7;
+    }
+
+    .slide-section-label.seo  { color: var(--amber); }
+    .slide-section-label.ux   { color: #60a5fa; }
+    .slide-section-label.tech { color: var(--green); }
+    .slide-section-label.synth{ color: var(--unicorn); }
+
+    .slide-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9em;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text);
+      margin: 0;
+    }
+
+    /* ─── Cards grid ─────────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      gap: 14px;
+      flex: 1;
+    }
+
+    .cards-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    .cards-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .cards-grid.cols-1 { grid-template-columns: 1fr; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .card.danger::before  { background: var(--red); }
+    .card.warning::before { background: var(--orange); }
+    .card.ok::before      { background: var(--green); }
+    .card.neutral::before { background: var(--amber); }
+    .card.info::before    { background: #60a5fa; }
+
+    .card-icon {
+      font-size: 1.4em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .card-label {
+      font-size: 0.58em;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-size: 0.75em;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .card-body {
+      font-size: 0.62em;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .card-stat {
+      font-family: 'Playfair Display', serif;
+      font-size: 2em;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .card-stat.danger  { color: var(--red); }
+    .card-stat.warning { color: var(--orange); }
+    .card-stat.ok      { color: var(--green); }
+    .card-stat.neutral { color: var(--amber); }
+
+    /* ─── Score Badge ─────────────────────────────────────────── */
+    .score-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border-radius: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 1.3em;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .score-badge.grade-d { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(232,85,85,0.3); }
+    .score-badge.grade-c { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(232,122,53,0.3); }
+    .score-badge.grade-b { background: var(--amber-glow); color: var(--amber);  border: 1px solid rgba(232,168,35,0.3); }
+    .score-badge.grade-a { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(78,203,116,0.3); }
+
+    /* ─── Score Row (technique) ─────────────────────────────── */
+    .score-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 18px;
+    }
+
+    .score-row-info {
+      flex: 1;
+    }
+
+    .score-row-label {
+      font-size: 0.65em;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .score-row-desc {
+      font-size: 0.56em;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.4;
+    }
+
+    .score-bar-wrap {
+      width: 120px;
+      flex-shrink: 0;
+    }
+
+    .score-bar-track {
+      height: 5px;
+      background: var(--bg-card2);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1s ease;
+    }
+
+    .score-bar-fill.grade-d { background: var(--red);    width: 25%; }
+    .score-bar-fill.grade-c { background: var(--orange); width: 50%; }
+    .score-bar-fill.grade-b { background: var(--amber);  width: 65%; }
+    .score-bar-fill.grade-a { background: var(--green);  width: 90%; }
+
+    .score-bar-text {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.5em;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    /* ─── Bullet list ─────────────────────────────────────────── */
+    .reveal ul.custom-list {
+      list-style: none;
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .reveal ul.custom-list li {
+      font-size: 0.7em;
+      color: var(--text-muted);
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .reveal ul.custom-list li .li-icon {
+      flex-shrink: 0;
+      font-size: 1em;
+      margin-top: 1px;
+    }
+
+    /* ─── Sommaire ─────────────────────────────────────────────── */
+    .sommaire-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .sommaire-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sommaire-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+    }
+
+    .sommaire-card.s-seo  .sommaire-num { color: var(--amber); }
+    .sommaire-card.s-ux   .sommaire-num { color: #60a5fa; }
+    .sommaire-card.s-tech .sommaire-num { color: var(--green); }
+
+    .sommaire-card.s-seo  { border-top: 2px solid var(--amber); }
+    .sommaire-card.s-ux   { border-top: 2px solid #60a5fa; }
+    .sommaire-card.s-tech { border-top: 2px solid var(--green); }
+
+    .sommaire-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0.8;
+    }
+
+    .sommaire-label {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sommaire-items {
+      font-size: 0.6em;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 2;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+
+    .sommaire-items span {
+      display: block;
+    }
+
+    /* ─── UX Score ─────────────────────────────────────────────── */
+    .ux-score-hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 36px;
+      margin-bottom: 20px;
+    }
+
+    .ux-score-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5em;
+      font-weight: 900;
+      color: var(--red);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .ux-score-slash {
+      font-size: 2.5em;
+      color: var(--text-dim);
+      font-weight: 300;
+      margin: 0 4px;
+    }
+
+    .ux-score-label {
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .ux-score-sub {
+      font-size: 0.62em;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    /* ─── Synthèse table ─────────────────────────────────────── */
+    .synth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .synth-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .synth-section-title {
+      font-size: 0.65em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .synth-section-title.seo  { color: var(--amber); }
+    .synth-section-title.ux   { color: #60a5fa; }
+    .synth-section-title.tech { color: var(--green); }
+    .synth-section-title.reco { color: var(--unicorn); }
+
+    .synth-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.58em;
+      color: var(--text-muted);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .synth-row:last-child { border-bottom: none; }
+
+    .synth-val {
+      font-weight: 600;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .synth-val.danger  { color: var(--red); }
+    .synth-val.warning { color: var(--orange); }
+    .synth-val.ok      { color: var(--green); }
+    .synth-val.neutral { color: var(--amber); }
+
+    /* ─── Quick wins numbered list ─────────────────────────── */
+    .qw-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+
+    .qw-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+
+    .qw-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em;
+      color: var(--amber);
+      font-weight: 500;
+      flex-shrink: 0;
+      margin-top: 1px;
+      min-width: 22px;
+    }
+
+    .qw-text {
+      font-size: 0.62em;
+      color: var(--text-muted);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .qw-text strong {
+      color: var(--text);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 1em;
+    }
+
+    /* ─── Prochaines étapes ──────────────────────────────────── */
+    .steps-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .steps-timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 12px; bottom: 12px;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--amber), var(--unicorn));
+      opacity: 0.4;
+    }
+
+    .step-item {
+      display: flex;
+      gap: 18px;
+      padding: 14px 0;
+      position: relative;
+    }
+
+    .step-dot {
+      position: absolute;
+      left: -26px; top: 50%;
+      transform: translateY(-50%);
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--amber);
+      background: var(--bg-dark);
+      flex-shrink: 0;
+    }
+
+    .step-phase {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55em;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      min-width: 80px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 0.75em;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .step-desc {
+      font-size: 0.6em;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .step-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .step-tag {
+      font-size: 0.5em;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .step-tag.critical { background: var(--red-dim);    color: var(--red);    border: 1px solid rgba(232,85,85,0.2); }
+    .step-tag.high     { background: var(--orange-dim); color: var(--orange); border: 1px solid rgba(232,122,53,0.2); }
+    .step-tag.medium   { background: var(--amber-glow); color: var(--amber);  border: 1px solid rgba(232,168,35,0.2); }
+    .step-tag.low      { background: var(--green-dim);  color: var(--green);  border: 1px solid rgba(78,203,116,0.2); }
+
+    /* ─── Closing slide ─────────────────────────────────────── */
+    .slide-closing {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100%;
+      padding: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-closing::before {
+      content: '';
+      position: absolute;
+      top: -300px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(168,85,247,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .closing-diamond {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--unicorn), var(--amber));
+      transform: rotate(45deg);
+      border-radius: 6px;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+
+    .closing-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4em;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .closing-sub {
+      font-size: 0.72em;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .closing-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 0.65em;
+      color: var(--text-dim);
+    }
+
+    .closing-contact strong {
+      color: var(--text-muted);
+      font-size: 0.9em;
+    }
+
+    .closing-agency {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      color: var(--unicorn);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 40px;
+      opacity: 0.7;
+    }
+
+    /* ─── Progress bar (reveal override) ────────────────────── */
+    .reveal .progress {
+      height: 2px;
+      color: var(--amber);
+    }
+
+    .reveal .progress span {
+      background: linear-gradient(90deg, var(--amber), var(--unicorn));
+    }
+
+    /* ─── Fragment animations ─────────────────────────────── */
+    .reveal .fragment.fade-up {
+      transform: translate(0, 20px);
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .reveal .fragment.fade-up.visible {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    /* ─── Two-column layout ──────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      flex: 1;
+    }
+
+    .two-col-left, .two-col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* ─── Highlight box ──────────────────────────────────────── */
+    .highlight-box {
+      background: var(--amber-glow);
+      border: 1px solid rgba(232,168,35,0.25);
+      border-radius: 8px;
+      padding: 14px 18px;
+      font-size: 0.68em;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .highlight-box.blue {
+      background: rgba(96,165,250,0.08);
+      border-color: rgba(96,165,250,0.2);
+    }
+
+    .highlight-box.red {
+      background: var(--red-dim);
+      border-color: rgba(232,85,85,0.2);
+      color: var(--text-muted);
+    }
+
+    /* ─── Responsive tweaks ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .cards-grid.cols-3  { grid-template-columns: 1fr 1fr; }
+      .sommaire-grid      { grid-template-columns: 1fr; }
+      .synth-grid         { grid-template-columns: 1fr; }
+      .qw-list            { grid-template-columns: 1fr; }
+      .slide-content      { padding: 30px 40px; }
+    }
+  </style>
+</head>
+
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE 1 — TITRE
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-cover">
+      <div class="cover-eyebrow">Rapport d'Audit Digital — Avril 2026</div>
+      <h1 class="cover-title">Audit Digital<br><em>Bastian</em><br>Fitness & Coaching</h1>
+      <div class="cover-divider"></div>
+      <p class="cover-subtitle">bastian-coaching.fr</p>
+      <div class="audit-pills">
+        <span class="audit-pill">📊 SEO & Marketing</span>
+        <span class="audit-pill">🎨 UX / UI</span>
+        <span class="audit-pill">⚙️ Technique</span>
+      </div>
+      <div class="cover-meta">
+        <span><strong>Réalisé par</strong>Unicorn Agency</span>
+        <span><strong>Client</strong>Bastian Coaching — Thonon-les-Bains</span>
+        <span><strong>Date</strong>Avril 2026</span>
+      </div>
+      <div class="cover-agency">◆ Unicorn Agency</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE 2 — SOMMAIRE
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label synth">Au programme</div>
+        <h2 class="slide-title">Vue d'ensemble de l'audit</h2>
+      </div>
+      <div class="sommaire-grid">
+        <div class="sommaire-card s-seo">
+          <div class="sommaire-num">01</div>
+          <div class="sommaire-label">SEO & Marketing</div>
+          <div class="sommaire-items">
+            <span>→ Analyse de visibilité locale</span>
+            <span>→ Benchmark concurrentiel</span>
+            <span>→ 16 recommandations</span>
+          </div>
+        </div>
+        <div class="sommaire-card s-ux">
+          <div class="sommaire-num">02</div>
+          <div class="sommaire-label">UX / UI</div>
+          <div class="sommaire-items">
+            <span>→ Score UX : 4/10</span>
+            <span>→ Problèmes de conversion</span>
+            <span>→ Actions P1 / P2 / P3</span>
+          </div>
+        </div>
+        <div class="sommaire-card s-tech">
+          <div class="sommaire-num">03</div>
+          <div class="sommaire-label">Audit Technique</div>
+          <div class="sommaire-items">
+            <span>→ Sécurité, SEO, Perf.</span>
+            <span>→ 6 scores par domaine</span>
+            <span>→ 16 recommandations</span>
+          </div>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:16px">
+        <strong>Synthèse :</strong> Le site informe mais ne convertit pas. Des opportunités claires existent sur la niche coaching personnalisé en Haute-Savoie — aucun concurrent ne domine ce segment.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION DIVIDER — SEO
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-section-divider">
+      <div class="section-num">01</div>
+      <div class="section-accent-line seo-accent"></div>
+      <div class="section-tag seo">Audit 01 / 03</div>
+      <h2 class="section-divider-title">SEO, Marketing<br>&amp; Concurrence</h2>
+      <p class="section-divider-desc">Analyse de la visibilité organique, du positionnement local et du paysage concurrentiel sur bastian-coaching.fr.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE SEO — Constats critiques
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label seo">SEO & Marketing — Constats</div>
+        <h2 class="slide-title">Problèmes critiques détectés</h2>
+      </div>
+      <div class="cards-grid cols-2">
+        <div class="card danger">
+          <span class="card-icon">🔍</span>
+          <div class="card-label">SEO On-Page</div>
+          <div class="card-title">Aucune optimisation meta</div>
+          <div class="card-body">Pas de title/meta description optimisés. Absence de sitemap XML. URLs dynamiques Joomla sur 4 coachs/5 — incompatibles Google.</div>
+        </div>
+        <div class="card danger">
+          <span class="card-icon">📍</span>
+          <div class="card-label">SEO Local</div>
+          <div class="card-title">Zéro mot-clé local ciblé</div>
+          <div class="card-body">Aucun ciblage «&nbsp;coaching Thonon&nbsp;», «&nbsp;coach sportif Haute-Savoie&nbsp;». Google My Business non optimisé.</div>
+        </div>
+        <div class="card warning">
+          <span class="card-icon">🏆</span>
+          <div class="card-label">Contenu</div>
+          <div class="card-title">Palmarès Dylan invisible</div>
+          <div class="card-body">Vice-Champion du Monde Spartan Race — credential exceptionnel absent de la home. 4 coachs sur 5 sans bio. Aucun témoignage client.</div>
+        </div>
+        <div class="card danger">
+          <span class="card-icon">💸</span>
+          <div class="card-label">Conversion</div>
+          <div class="card-title">Zéro tunnel de conversion</div>
+          <div class="card-body">Pas de CTA d'action directe. Pas de tarifs affichés. Pas de formulaire de contact visible. Pas de proposition de valeur claire.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE SEO — Concurrence & opportunités
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label seo">SEO & Marketing — Concurrence</div>
+        <h2 class="slide-title">Benchmark : une opportunité claire</h2>
+      </div>
+      <div class="two-col">
+        <div class="two-col-left">
+          <div class="card neutral">
+            <div class="card-label">5 concurrents identifiés</div>
+            <div class="card-body" style="line-height:2">
+              → Sport Énergie Léman<br>
+              → VitalEvo2<br>
+              → CrossFit Thonon<br>
+              → Orange Bleue<br>
+              → Formafit
+            </div>
+          </div>
+          <div class="highlight-box">
+            <strong>💡 Opportunité</strong><br>Aucun concurrent ne domine le coaching personnalisé haut de gamme. La niche est libre.
+          </div>
+        </div>
+        <div class="two-col-right">
+          <div class="card ok">
+            <span class="card-icon">🎯</span>
+            <div class="card-label">Avantages concurrentiels non exploités</div>
+            <div class="card-body" style="line-height:1.8">
+              ✅ Palmarès world-class (Spartan Race)<br>
+              ✅ Équipe multi-disciplines (5 coachs)<br>
+              ✅ Locaux dédiés à Thonon<br>
+              ✅ Suivi personnalisé longue durée<br>
+              ❌ Non visible en ligne actuellement
+            </div>
+          </div>
+          <div class="card warning">
+            <div class="card-stat neutral">16</div>
+            <div class="card-label">recommandations SEO priorisées</div>
+            <div class="card-body">Quick wins, actions moyennes terme, stratégie long terme.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE SEO — Recommandations
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label seo">SEO & Marketing — Recommandations</div>
+        <h2 class="slide-title">Top 5 actions SEO prioritaires</h2>
+      </div>
+      <ul class="custom-list">
+        <li>
+          <span class="li-icon">🔥</span>
+          <div><strong style="color:var(--text)">Optimiser les balises title/meta</strong> — Intégrer «&nbsp;coach sportif Thonon&nbsp;», «&nbsp;coaching personnalisé Haute-Savoie&nbsp;» sur chaque page. Impact immédiat.</div>
+        </li>
+        <li>
+          <span class="li-icon">🗺️</span>
+          <div><strong style="color:var(--text)">Générer et soumettre un sitemap XML</strong> — Crawler Google actuellement bloqué. Priorité technique absolue.</div>
+        </li>
+        <li>
+          <span class="li-icon">🏅</span>
+          <div><strong style="color:var(--text)">Créer une page dédiée «&nbsp;Dylan — Vice-Champion du Monde&nbsp;»</strong> — Transformer le palmarès en argument commercial et SEO.</div>
+        </li>
+        <li>
+          <span class="li-icon">📝</span>
+          <div><strong style="color:var(--text)">Rédiger les bios des 5 coachs</strong> — Contenu unique, mots-clés longue traîne, amélioration de l'engagement et de la confiance.</div>
+        </li>
+        <li>
+          <span class="li-icon">⭐</span>
+          <div><strong style="color:var(--text)">Intégrer des témoignages clients</strong> — Section avis structurés avec schema.org pour les rich snippets Google.</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION DIVIDER — UX/UI
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-section-divider">
+      <div class="section-num">02</div>
+      <div class="section-accent-line ux-accent"></div>
+      <div class="section-tag ux">Audit 02 / 03</div>
+      <h2 class="section-divider-title">Audit<br>UX / UI</h2>
+      <p class="section-divider-desc">Analyse de l'expérience utilisateur, des parcours de conversion et de l'accessibilité sur bastian-coaching.fr.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE UX — Score & problèmes critiques
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label ux">UX/UI — Évaluation globale</div>
+        <h2 class="slide-title">Un site qui informe sans convertir</h2>
+      </div>
+      <div class="ux-score-hero">
+        <div>
+          <div style="font-size:0.55em;color:var(--text-muted);margin-bottom:6px;font-weight:300">Score UX global</div>
+          <div style="display:flex;align-items:baseline;gap:4px">
+            <span class="ux-score-num">4</span>
+            <span class="ux-score-slash">/10</span>
+          </div>
+        </div>
+        <div>
+          <div class="ux-score-label">Le site informe… mais ne convertit pas.</div>
+          <div class="ux-score-sub">Aucune page Tarifs. Pas de formulaire de contact. Hero sans CTA.<br>Zéro social proof malgré des credentials de haut niveau.</div>
+        </div>
+      </div>
+      <div class="cards-grid cols-3">
+        <div class="card danger">
+          <span class="card-icon">💶</span>
+          <div class="card-title">Pas de tarifs</div>
+          <div class="card-body">Frein #1 à la conversion. Le visiteur quitte sans déclencher de contact.</div>
+        </div>
+        <div class="card danger">
+          <span class="card-icon">📬</span>
+          <div class="card-title">Pas de formulaire</div>
+          <div class="card-body">Aucun moyen simple de prendre contact. CTA «&nbsp;+&nbsp;» sans label ni destination claire.</div>
+        </div>
+        <div class="card warning">
+          <span class="card-icon">🎠</span>
+          <div class="card-title">Carousel hero sans CTA</div>
+          <div class="card-body">Carousel auto-défilant sans message ni appel à l'action. Perd l'attention immédiatement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE UX — Actions prioritaires
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label ux">UX/UI — Plan d'action</div>
+        <h2 class="slide-title">Actions priorisées P1 → P3</h2>
+      </div>
+      <div class="two-col">
+        <div class="two-col-left">
+          <div class="card danger">
+            <div class="card-label">🔴 Priorité 1 — Critique</div>
+            <div class="card-body" style="line-height:2">
+              → Créer une page <strong style="color:var(--text)">Tarifs & Offres</strong><br>
+              → Ajouter un <strong style="color:var(--text)">formulaire de contact</strong><br>
+              → Bande de crédibilité <strong style="color:var(--text)">Dylan en home</strong>
+            </div>
+          </div>
+          <div class="card warning">
+            <div class="card-label">🟠 Priorité 2 — Important</div>
+            <div class="card-body" style="line-height:2">
+              → Hero statique avec <strong style="color:var(--text)">CTA clair</strong><br>
+              → Section <strong style="color:var(--text)">témoignages clients</strong><br>
+              → Intégration <strong style="color:var(--text)">Calendly</strong> (prise de RDV)
+            </div>
+          </div>
+        </div>
+        <div class="two-col-right">
+          <div class="card ok">
+            <div class="card-label">🟡 Priorité 3 — Amélioration</div>
+            <div class="card-body" style="line-height:2">
+              → Navigation simplifiée<br>
+              → Pages coachs complètes<br>
+              → Chat live ou bot FAQ
+            </div>
+          </div>
+          <div class="card info">
+            <div class="card-label">♿ Accessibilité — 3 violations</div>
+            <div class="card-body" style="line-height:1.8">
+              ❌ Alt texts = noms de fichiers<br>
+              ❌ CTA sans aria-label<br>
+              ❌ Carousel sans option de pause
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SECTION DIVIDER — TECHNIQUE
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-section-divider">
+      <div class="section-num">03</div>
+      <div class="section-accent-line tech-accent"></div>
+      <div class="section-tag tech">Audit 03 / 03</div>
+      <h2 class="section-divider-title">Audit<br>Technique</h2>
+      <p class="section-divider-desc">Analyse de la stack Joomla + YooTheme, sécurité, performances, infrastructure et conformité RGPD.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE TECH — Scores par domaine
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label tech">Technique — Tableau de bord</div>
+        <h2 class="slide-title">Scores par domaine</h2>
+      </div>
+      <div class="score-rows">
+        <div class="score-row">
+          <div class="score-badge grade-d">D</div>
+          <div class="score-row-info">
+            <div class="score-row-label">🔒 Sécurité</div>
+            <div class="score-row-desc">6/7 headers HTTP manquants. Version PHP exposée. Cookies sans Secure/SameSite.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-d"></div></div>
+            <div class="score-bar-text">Critique</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-badge grade-d">D</div>
+          <div class="score-row-info">
+            <div class="score-row-label">🔍 SEO Technique</div>
+            <div class="score-row-desc">Title/meta faibles. Pas de sitemap. Pas de balises OG / Open Graph.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-d"></div></div>
+            <div class="score-bar-text">Critique</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-badge grade-d">D</div>
+          <div class="score-row-info">
+            <div class="score-row-label">♿ Accessibilité</div>
+            <div class="score-row-desc">Images sans alt text. Aria-labels manquants. Contraste insuffisant.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-d"></div></div>
+            <div class="score-bar-text">Critique</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-badge grade-c">C</div>
+          <div class="score-row-info">
+            <div class="score-row-label">⚡ Performance</div>
+            <div class="score-row-desc">Cache serveur désactivé. Images non optimisées. Pas de lazy loading.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-c"></div></div>
+            <div class="score-bar-text">À améliorer</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-badge grade-c">C</div>
+          <div class="score-row-info">
+            <div class="score-row-label">🌐 Infrastructure</div>
+            <div class="score-row-desc">OVHcloud sans CDN. Pas de cache edge. Pas de monitoring uptime.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-c"></div></div>
+            <div class="score-bar-text">À améliorer</div>
+          </div>
+        </div>
+        <div class="score-row">
+          <div class="score-badge grade-b">B</div>
+          <div class="score-row-info">
+            <div class="score-row-label">🛡️ RGPD</div>
+            <div class="score-row-desc">Bannière cookies fonctionnelle. Politique de confidentialité présente.</div>
+          </div>
+          <div class="score-bar-wrap">
+            <div class="score-bar-track"><div class="score-bar-fill grade-b"></div></div>
+            <div class="score-bar-text">Acceptable</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE TECH — Stack & vulnérabilités
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label tech">Technique — Stack & Vulnérabilités</div>
+        <h2 class="slide-title">6 actions haute priorité immédiates</h2>
+      </div>
+      <div class="two-col">
+        <div class="two-col-left">
+          <div class="card neutral">
+            <div class="card-label">Stack actuelle</div>
+            <div class="card-body" style="line-height:2">
+              → Joomla CMS (version exposée)<br>
+              → YooTheme Builder<br>
+              → PHP 8.5 (version visible)<br>
+              → OVHcloud hébergement mutualisé
+            </div>
+          </div>
+        </div>
+        <div class="two-col-right">
+          <ul class="custom-list" style="gap:6px">
+            <li><span class="li-icon">🔴</span>Masquer la version PHP dans les headers HTTP</li>
+            <li><span class="li-icon">🔴</span>Ajouter CSP, HSTS, X-Frame-Options, X-Content-Type</li>
+            <li><span class="li-icon">🔴</span>Corriger les alt texts sur toutes les images</li>
+            <li><span class="li-icon">🟠</span>Activer le cache serveur OVH</li>
+            <li><span class="li-icon">🟠</span>Activer CDN Cloudflare (gratuit)</li>
+            <li><span class="li-icon">🟡</span>Ajouter cookies Secure + SameSite</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE SYNTHÈSE
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label synth">Synthèse globale</div>
+        <h2 class="slide-title">Tableau récapitulatif des résultats</h2>
+      </div>
+      <div class="synth-grid">
+        <div class="synth-section">
+          <div class="synth-section-title seo">📊 SEO & Marketing</div>
+          <div class="synth-row"><span>Visibilité Google</span><span class="synth-val danger">Très faible</span></div>
+          <div class="synth-row"><span>SEO local</span><span class="synth-val danger">Inexistant</span></div>
+          <div class="synth-row"><span>Contenu différenciant</span><span class="synth-val warning">Sous-exploité</span></div>
+          <div class="synth-row"><span>Tunnel de conversion</span><span class="synth-val danger">Absent</span></div>
+          <div class="synth-row"><span>Benchmark concurrents</span><span class="synth-val ok">Opportunité</span></div>
+        </div>
+        <div class="synth-section">
+          <div class="synth-section-title ux">🎨 UX / UI</div>
+          <div class="synth-row"><span>Score UX global</span><span class="synth-val danger">4 / 10</span></div>
+          <div class="synth-row"><span>Page Tarifs</span><span class="synth-val danger">Absente</span></div>
+          <div class="synth-row"><span>Formulaire contact</span><span class="synth-val danger">Absent</span></div>
+          <div class="synth-row"><span>Social proof</span><span class="synth-val danger">Absent</span></div>
+          <div class="synth-row"><span>Accessibilité WCAG</span><span class="synth-val warning">3 violations</span></div>
+        </div>
+        <div class="synth-section">
+          <div class="synth-section-title tech">⚙️ Technique</div>
+          <div class="synth-row"><span>Sécurité</span><span class="synth-val danger">D — Critique</span></div>
+          <div class="synth-row"><span>SEO technique</span><span class="synth-val danger">D — Critique</span></div>
+          <div class="synth-row"><span>Accessibilité</span><span class="synth-val danger">D — Critique</span></div>
+          <div class="synth-row"><span>Performance</span><span class="synth-val warning">C — Moyen</span></div>
+          <div class="synth-row"><span>Infrastructure</span><span class="synth-val warning">C — Moyen</span></div>
+          <div class="synth-row"><span>RGPD</span><span class="synth-val neutral">B — OK</span></div>
+        </div>
+        <div class="synth-section">
+          <div class="synth-section-title reco">🎯 Recommandations</div>
+          <div class="synth-row"><span>Actions critiques (P1)</span><span class="synth-val danger">8 actions</span></div>
+          <div class="synth-row"><span>Actions importantes (P2)</span><span class="synth-val warning">12 actions</span></div>
+          <div class="synth-row"><span>Améliorations (P3)</span><span class="synth-val neutral">12 actions</span></div>
+          <div class="synth-row"><span>Total recommandations</span><span class="synth-val ok">32 actions</span></div>
+          <div class="synth-row"><span>Quick wins (< 1 semaine)</span><span class="synth-val ok">10 actions</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE — TOP 10 QUICK WINS
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label synth">Cross-Audit</div>
+        <h2 class="slide-title">Top 10 quick wins — Impact immédiat</h2>
+      </div>
+      <ul class="qw-list">
+        <li class="qw-item">
+          <span class="qw-num">01</span>
+          <div class="qw-text"><strong>Optimiser title + meta descriptions</strong>Ajouter mots-clés locaux sur toutes les pages — impact SEO en 2-4 semaines.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">02</span>
+          <div class="qw-text"><strong>Générer le sitemap XML</strong>Soumettre dans Google Search Console immédiatement.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">03</span>
+          <div class="qw-text"><strong>Créer une page Tarifs</strong>Frein #1 à la conversion — à implémenter en priorité absolue.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">04</span>
+          <div class="qw-text"><strong>Ajouter un formulaire de contact</strong>Activation de la prise de contact directe depuis le site.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">05</span>
+          <div class="qw-text"><strong>Masquer la version PHP</strong>Supprimer l'exposition de la version dans les headers HTTP.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">06</span>
+          <div class="qw-text"><strong>Corriger les alt texts</strong>Remplacer les noms de fichiers par des descriptions accessibles.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">07</span>
+          <div class="qw-text"><strong>Hero statique + CTA</strong>Remplacer le carousel par un hero fort avec message + bouton.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">08</span>
+          <div class="qw-text"><strong>Bande de crédibilité Dylan</strong>Afficher le palmarès Spartan Race en home — social proof puissant.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">09</span>
+          <div class="qw-text"><strong>Activer CDN Cloudflare</strong>Gratuit, rapide à configurer — impact performance immédiat.</div>
+        </li>
+        <li class="qw-item">
+          <span class="qw-num">10</span>
+          <div class="qw-text"><strong>Ajouter headers de sécurité</strong>CSP, HSTS, X-Frame-Options — configuration .htaccess rapide.</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE — PROCHAINES ÉTAPES
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-content">
+      <div class="slide-header">
+        <div class="slide-section-label synth">Roadmap</div>
+        <h2 class="slide-title">Prochaines étapes recommandées</h2>
+      </div>
+      <div class="steps-timeline">
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <div class="step-phase">Phase 1<br>J+1-7</div>
+          <div class="step-content">
+            <div class="step-title">Quick Wins — Corrections immédiates</div>
+            <div class="step-desc">SEO meta/sitemap, sécurité headers, alt texts images, formulaire de contact basique.</div>
+            <div class="step-tags">
+              <span class="step-tag critical">SEO</span>
+              <span class="step-tag critical">Sécurité</span>
+              <span class="step-tag high">UX</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <div class="step-phase">Phase 2<br>J+7-30</div>
+          <div class="step-content">
+            <div class="step-title">Conversion — Refonte des pages clés</div>
+            <div class="step-desc">Page Tarifs, hero repensé avec CTA, bande de crédibilité Dylan, témoignages clients, intégration Calendly.</div>
+            <div class="step-tags">
+              <span class="step-tag high">Conversion</span>
+              <span class="step-tag medium">Design</span>
+              <span class="step-tag medium">Contenu</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <div class="step-phase">Phase 3<br>J+30-90</div>
+          <div class="step-content">
+            <div class="step-title">Performance &amp; Contenu — Renforcement</div>
+            <div class="step-desc">Bios des 5 coachs, CDN + cache, optimisation Core Web Vitals, blog SEO, Google My Business optimisé.</div>
+            <div class="step-tags">
+              <span class="step-tag medium">SEO</span>
+              <span class="step-tag medium">Performance</span>
+              <span class="step-tag low">Contenu</span>
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-dot" style="border-color:var(--unicorn)"></div>
+          <div class="step-phase" style="color:var(--unicorn)">Phase 4<br>Long terme</div>
+          <div class="step-content">
+            <div class="step-title">Migration vers Next.js / React</div>
+            <div class="step-desc">Recommandation stratégique — remplacement de Joomla par une stack moderne, performante et évolutive. Score Lighthouse cible : 90+.</div>
+            <div class="step-tags">
+              <span class="step-tag low">Stratégique</span>
+              <span class="step-tag low">Next.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════
+       SLIDE CLOSING
+  ══════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="slide-closing">
+      <div class="closing-diamond"></div>
+      <h2 class="closing-title">Prêts à passer<br>à l'action ?</h2>
+      <p class="closing-sub">32 recommandations identifiées, 10 quick wins réalisables immédiatement. Nous sommes disponibles pour définir ensemble les priorités et démarrer la mise en œuvre.</p>
+      <div class="closing-contact">
+        <div><strong>Unicorn Agency</strong></div>
+        <div>Spécialistes Next.js · Web Performance · SEO</div>
+      </div>
+      <div class="closing-agency">◆ Unicorn Agency — 2026</div>
+    </div>
+  </section>
+
+</div><!-- /.slides -->
+</div><!-- /.reveal -->
+
+<!-- Reveal.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    progress: true,
+    controls: true,
+    controlsTutorial: false,
+    slideNumber: 'c/t',
+    transition: 'fade',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    center: false,
+    overview: true,
+    touch: true,
+    keyboard: true,
+    fragments: true,
+    help: true,
+    showNotes: false,
+    autoPlayMedia: false,
+    preloadIframes: false,
+  });
+</script>
+</body>
+</html>
